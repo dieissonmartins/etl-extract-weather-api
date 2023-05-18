@@ -8,3 +8,5 @@ services:
     working_dir: /var/www/etl-extract-weather
     volumes:
       - ./:/var/www/etl-extract-weather
+    ports:
+      - "9000:3001"

@@ -1,0 +1,1 @@
+docker exec -it etl-extract-weather sh
