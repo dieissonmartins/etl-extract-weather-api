@@ -1,0 +1,10 @@
+version: "3.7"
+
+services:
+
+  python:
+    container_name: etl-extract-weather
+    build: docker/python
+    working_dir: /var/www/etl-extract-weather
+    volumes:
+      - ./:/var/www/etl-extract-weather
