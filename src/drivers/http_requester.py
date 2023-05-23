@@ -1,4 +1,3 @@
-from abc import ABC
 from typing import Dict
 from .interfaces.http_requester import HttpRequesterInterface
 from dotenv import load_dotenv
@@ -6,14 +5,14 @@ import os
 import requests
 
 
-class HttpRequester(HttpRequesterInterface, ABC):
+class HttpRequester(HttpRequesterInterface):
     __url: str
     __headers: Dict
     __params: Dict
     __key: str
     __prefix: str
 
-    def __int__(self) -> None:
+    def __init__(self) -> None:
         # load envs
         load_dotenv()
 
@@ -31,13 +30,14 @@ class HttpRequester(HttpRequesterInterface, ABC):
 
     def get_weather_by_city(self) -> Dict[str, str | int]:
         endpoint = self.__url + self.__prefix + '/Rio de Janeiro/2022-01-01/2022-02-01'
-        params = '?unitGroup=us&key=B3QQF364K5WK3MAFQ5QU5SZPB&contentType=json&include=current,alerts'
+
+        params = '?unitGroup=us&contentType=json&include=current,alerts&key=' + self.__key
 
         response = requests.get(endpoint, params)
 
         ret = {
             "status_code": response.status_code,
-            "data": response.text
+            "data": response.content
         }
 
         return ret
