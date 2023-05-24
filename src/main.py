@@ -1,5 +1,5 @@
 from src.drivers.http_requester import HttpRequester
-from stages.extract.extract_data import ExtractData
+from src.stages.extract.extract_data import ExtractData
 
 http_requester = HttpRequester()
 
