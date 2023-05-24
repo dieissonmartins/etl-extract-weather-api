@@ -5,6 +5,6 @@ http_requester = HttpRequester()
 
 # extract data
 data = ExtractData(http_requester)
-
 extract_data = data.extract()
 
+# transform data
