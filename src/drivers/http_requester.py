@@ -29,15 +29,26 @@ class HttpRequester(HttpRequesterInterface):
         self.__key = os.getenv("KEY")
 
     def get_weather_by_city(self) -> Dict[str, str | int]:
-        endpoint = self.__url + self.__prefix + '/Rio de Janeiro/2022-01-01/2022-02-01'
+        city = 'Rio de Janeiro'
+        dt_start = '2022-01-01'
+        dt_end = '2022-02-01'
 
-        params = '?unitGroup=us&contentType=json&include=current,alerts&key=' + self.__key
+        endpoint = f'{self.__url}{self.__prefix}/{city}/{dt_start}/{dt_end}'
+
+        params = {
+            'unitGroup': 'us',
+            'contentType': 'json',
+            'include': 'current,alerts',
+            'key': self.__key
+        }
 
         response = requests.get(endpoint, params)
 
+        data = response.json()
+
         ret = {
             "status_code": response.status_code,
-            "data": response.content
+            "data": data
         }
 
         return ret
