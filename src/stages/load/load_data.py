@@ -10,7 +10,9 @@ class LoadData:
     def load(self, transform_html_data):
         data_frame = pd.DataFrame(transform_html_data)
 
+        print(data_frame)
+
         date = str(datetime.today().timestamp())
 
-        dir_to = self.__path + '/../../../tmp/exported-' + date + '.json'
-        data_frame.to_json(dir_to)
+        dir_to = self.__path + '/../../../tmp/exported-' + date + '.csv'
+        data_frame.to_csv(dir_to)
